@@ -12,6 +12,8 @@ on:
   pull_request_target:
     branches: [main]
     types: [opened, closed, synchronize, review_requested]
+env:
+  API_URL: https://app.stage.veribom.com
 
 jobs:
   create_scan_in_IR_Portal:
