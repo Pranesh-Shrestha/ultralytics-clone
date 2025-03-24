@@ -72,7 +72,7 @@ jobs:
           INVISIRISK_PORTAL: https://app.stage.veribom.com/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     container:
-      image: python:3.12-slim
+      image: python:3.12
       options: --cap-add=NET_ADMIN --privileged
     strategy:
       matrix:
