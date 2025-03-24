@@ -97,6 +97,21 @@ jobs:
 
       - name: Install sudo
         run: apt-get update && apt-get install -y sudo
+
+
+      - name: Update CA Certificates
+        run: |
+          apt-get update
+          apt-get install -y ca-certificates
+          update-ca-certificates
+      
+      - name: Set SSL Environment Variables
+        run: |
+          echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
+          echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
+          
+      - name: Install Dependencies with Native TLS
+        run: uv pip install --system --native-tls ultralytics-actions codespell tomli
           
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14
