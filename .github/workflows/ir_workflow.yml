@@ -14,11 +14,11 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-    #  - name: Setup PSE
-    #    uses: kkisalaya/ir-gh-action@v0.95
-    #    with:
-    #      api_url: 'https://app.stage.invisirisk.com'
-    #      app_token: ${{secrets.VB_API_KEY_STAGE}}
+      - name: Setup PSE
+        uses: kkisalaya/ir-gh-action@v0.95
+        with:
+          api_url: 'https://app.stage.invisirisk.com'
+          app_token: ${{secrets.VB_API_KEY_STAGE}}
         
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14  # Pinning to vulnerable Action version
@@ -58,6 +58,12 @@ jobs:
             - **Docker Image**. See [Docker Quickstart Guide](https://docs.ultralytics.com/yolov5/environments/docker_image_quickstart_tutorial/) <a href="https://hub.docker.com/r/ultralytics/ultralytics"><img src="https://img.shields.io/docker/pulls/ultralytics/ultralytics?logo=docker" alt="Docker Pulls"></a>
 
             ## Status
+
+      - name: Cleanup PSE
+        if: always()
+        uses: kkisalaya/ir-gh-action@v0.95
+        with:
+          cleanup: 'true'
 
             <a href="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yaml?query=event%3Aschedule"><img src="https://github.com/ultralytics/ultralytics/actions/workflows/ci.yaml/badge.svg" alt="Ultralytics CI"></a>
 
