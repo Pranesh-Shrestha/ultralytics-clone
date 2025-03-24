@@ -17,7 +17,7 @@ jobs:
       - name: Setup PSE
         uses: kkisalaya/ir-gh-action@v0.95
         with:
-          api_url: 'https://stage.app.invisirisk.com'
+          api_url: 'https://app.stage.invisirisk.com'
           app_token: ${{secrets.VB_API_KEY_STAGE}}
         
       - name: Run Ultralytics Formatting
