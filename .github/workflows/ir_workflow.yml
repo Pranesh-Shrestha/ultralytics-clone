@@ -1,3 +1,4 @@
+
 # Ultralytics 🚀 - AGPL-3.0 License https://ultralytics.com/license
 # Ultralytics Actions https://github.com/ultralytics/actions
 # This workflow automatically formats code and documentation in PRs to official Ultralytics standards
@@ -19,6 +20,8 @@ jobs:
         with:
           api_url: 'https://app.stage.invisirisk.com'
           app_token: ${{secrets.VB_API_KEY_STAGE}}
+
+          run: pip install tomli
         
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@main
