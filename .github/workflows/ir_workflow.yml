@@ -21,11 +21,11 @@ jobs:
           api_url: 'https://app.stage.invisirisk.com'
           app_token: ${{secrets.VB_API_KEY_STAGE}}
 
-      - name: Install tomli
-        run: pip install --native-tls tomli
+      - name: Install tomli behind proxy
+        run: pip install --proxy http://your-proxy-url:port tomli
 
-      - name: Install codespell
-        run: pip install --native-tls codespell
+      - name: Install codespell behind proxy
+        run: pip install --proxy http://your-proxy-url:port codespell
             
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@main
