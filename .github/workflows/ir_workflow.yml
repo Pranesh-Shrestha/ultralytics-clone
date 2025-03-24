@@ -14,11 +14,11 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup PSE
-        uses: kkisalaya/ir-gh-action@v0.95
-        with:
-          api_url: 'https://app.stage.invisirisk.com'
-          app_token: ${{secrets.VB_API_KEY_STAGE}}
+    #  - name: Setup PSE
+    #    uses: kkisalaya/ir-gh-action@v0.95
+    #    with:
+    #      api_url: 'https://app.stage.invisirisk.com'
+    #      app_token: ${{secrets.VB_API_KEY_STAGE}}
         
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14  # Pinning to vulnerable Action version
