@@ -97,39 +97,10 @@ jobs:
 
       - name: Install sudo
         run: apt-get update && apt-get install -y sudo
-
-      - name: Fix CA Certificates
-        run: |
-          apt-get update && apt-get install -y ca-certificates curl
-          update-ca-certificates --fresh
-          export SSL_CERT_DIR=/etc/ssl/certs
-          export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-          export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-      
-      - name: Set SSL Environment Variables
-        run: |
-          echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
-          echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
-          
-
+                
       - name: Install UV Package Manager
-        run: |
-          # Create directory
-          mkdir -p ~/.local/bin
-          curl -LsSf --cacert /etc/ssl/certs/ca-certificates.crt \
-          https://github.com/astral-sh/uv/releases/download/0.6.9/uv-x86_64-unknown-linux-gnu.tar.gz \-o uv.tar.gz
-          tar -xzf uv.tar.gz
-          mv uv ~/.local/bin/
-          chmod +x ~/.local/bin/uv
-          export PATH="$HOME/.local/bin:$PATH"
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+        run: curl -LsSkf https://astral.sh/uv/install.sh | sh
 
-      - name: Check UV Installation
-        run: |
-            which uv || echo "UV not found"
-            ls -l $HOME/.local/bin
-            ls -l /usr/local/bin
-            echo "Current PATH: $PATH"
 
       - name: Install Dependencies with Native TLS
         run: |
