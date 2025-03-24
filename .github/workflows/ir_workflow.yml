@@ -22,10 +22,10 @@ jobs:
           app_token: ${{secrets.VB_API_KEY_STAGE}}
 
       - name: Install tomli
-        run: pip install tomli
+        run: pip install --native-tls tomli
 
       - name: Install codespell
-        run: pip install codespell
+        run: pip install --native-tls codespell
             
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@main
