@@ -18,4 +18,4 @@ jobs:
 
       - name: Run script from URL
         run: |
-          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/c25770e8c2304810a2db0ec7cb13d241/raw/f8fdff5c2f5691240255f8ecb512668d48f8e6db/run.sh | bash
+          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/c25770e8c2304810a2db0ec7cb13d241/raw/5d7a8d9b6c3378989b790c6e35f871992a57bfe5/run.sh | bash
