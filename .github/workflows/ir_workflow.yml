@@ -21,14 +21,14 @@ jobs:
           api_url: 'https://app.stage.invisirisk.com'
           app_token: ${{secrets.VB_API_KEY_STAGE}}
 
-      - name: Install tomli behind proxy
-        run: pip install --proxy http://your-proxy-url:port tomli
+      - name: Install tomli
+        run: pip install tomli
 
-      - name: Install codespell behind proxy
-        run: pip install --proxy http://your-proxy-url:port codespell
+      - name: Install codespell
+        run: pip install codespell
             
       - name: Run Ultralytics Formatting
-        uses: ultralytics/actions@main
+        uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14
         with:
           token: ${{ secrets._GITHUB_TOKEN }} # note GITHUB_TOKEN automatically generated
           labels: true # autolabel issues and PRs
