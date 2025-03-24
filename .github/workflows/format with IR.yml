@@ -100,12 +100,11 @@ jobs:
 
       - name: Fix CA Certificates
         run: |
-          apt-get update && apt-get install -y ca-certificates
-          update-ca-certificates
-          export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+          apt-get update && apt-get install -y ca-certificates curl
+          update-ca-certificates --fresh
+          export SSL_CERT_DIR=/etc/ssl/certs
           export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-          echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
-          echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
+          export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
       
       - name: Set SSL Environment Variables
         run: |
@@ -115,12 +114,15 @@ jobs:
 
       - name: Install UV Package Manager
         run: |
-          curl -LsSfk https://astral.sh/uv/install.sh | sh
+          # Create directory
+          mkdir -p ~/.local/bin
+          curl -LsSf --cacert /etc/ssl/certs/ca-certificates.crt \
+          https://github.com/astral-sh/uv/releases/download/0.6.9/uv-x86_64-unknown-linux-gnu.tar.gz \-o uv.tar.gz
+          tar -xzf uv.tar.gz
+          mv uv ~/.local/bin/
+          chmod +x ~/.local/bin/uv
+          export PATH="$HOME/.local/bin:$PATH"
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-          export PATH="$HOME/.local/bin:$PATH"
-          echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-          source ~/.bashrc
-          export PATH="$HOME/.local/bin:$PATH"
 
       - name: Check UV Installation
         run: |
@@ -144,8 +146,8 @@ jobs:
           prettier: true
           spelling: true
           links: false
-          summary: true
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          summary: false
+
           
       - name: Install Python dependencies
         run: pip install --ignore-installed -r requirements.txt || true
