@@ -98,20 +98,36 @@ jobs:
       - name: Install sudo
         run: apt-get update && apt-get install -y sudo
 
-
-      - name: Update CA Certificates
+      - name: Fix CA Certificates
         run: |
-          apt-get update
-          apt-get install -y ca-certificates
+          apt-get update && apt-get install -y ca-certificates
           update-ca-certificates
+          export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+          export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+          echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
+          echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
       
       - name: Set SSL Environment Variables
         run: |
           echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
           echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
           
+      - name: Install UV Package Manager
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install UV Package Manager
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.local/bin:$PATH"
+
       - name: Install Dependencies with Native TLS
-        run: uv pip install --system --native-tls ultralytics-actions codespell tomli
+        run: |
+          uv pip install --system --native-tls ultralytics-actions codespell tomli || \
+          uv pip install --system ultralytics-actions codespell tomli
+
           
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14
