@@ -112,16 +112,22 @@ jobs:
           echo "REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
           echo "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> $GITHUB_ENV
           
-      - name: Install UV Package Manager
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install UV Package Manager
         run: |
           curl -LsSf https://astral.sh/uv/install.sh | sh
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           export PATH="$HOME/.local/bin:$PATH"
+          echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+          source ~/.bashrc
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Check UV Installation
+        run: |
+            which uv || echo "UV not found"
+            ls -l $HOME/.local/bin
+            ls -l /usr/local/bin
+            echo "Current PATH: $PATH"
 
       - name: Install Dependencies with Native TLS
         run: |
