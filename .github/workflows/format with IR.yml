@@ -94,6 +94,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Install sudo
+        run: apt-get update && apt-get install -y sudo
           
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@eb1201bd933b9f6096c64525ccaee3684c91bf14
@@ -106,5 +109,6 @@ jobs:
           links: false
           summary: true
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          
       - name: Install Python dependencies
         run: pip install --ignore-installed -r requirements.txt || true
