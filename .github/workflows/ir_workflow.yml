@@ -21,8 +21,12 @@ jobs:
           api_url: 'https://app.stage.invisirisk.com'
           app_token: ${{secrets.VB_API_KEY_STAGE}}
 
-          run: pip install tomli
-        
+      - name: Install tomli
+        run: pip install tomli
+
+      - name: Install codespell
+        run: pip install codespell
+            
       - name: Run Ultralytics Formatting
         uses: ultralytics/actions@main
         with:
