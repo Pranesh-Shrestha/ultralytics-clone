@@ -12,6 +12,7 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -30,7 +31,10 @@ jobs:
       - name: Activate virtual environment
         run: source venv/bin/activate
 
-      - name: Install dependencies with native TLS
+      - name: Upgrade pip to avoid potential pip issues
+        run: pip install --upgrade pip
+
+      - name: Install dependencies with trusted hosts
         run: |
           pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org tomli codespell
 
