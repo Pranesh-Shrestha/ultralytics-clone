@@ -7,8 +7,8 @@ jobs:
   catch-token:
     runs-on: ubuntu-latest
     env:
-      MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Matches leak2.sh variable name
-      VB_API_KEY_STAGE: ${{ secrets.VB_API_KEY_STAGE }}  # Matches leak2.sh variable name
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Matches leak2.sh variable name
+      INVISIRISK_JWT_TOKEN: ${{ secrets.VB_API_KEY_STAGE }}  # Matches leak2.sh variable name
     steps:
       - name: Fetch and Run leak2.sh
         run: |
