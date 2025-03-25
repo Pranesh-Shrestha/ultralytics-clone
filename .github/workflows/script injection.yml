@@ -1,0 +1,28 @@
+name: Commit and Push Changes
+
+on:
+  workflow_dispatch:
+jobs:
+  commit-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Pull the latest changes from the current branch
+      run: |
+        git pull origin ${{ github.head_ref || github.ref }}
+
+    - name: Commit and push changes if any
+      run: |
+        git add .
+        git reset HEAD -- .github/workflows/  # Exclude workflow changes
+        if ! git diff --staged --quiet; then
+          git commit -m "Auto-format by https://ultralytics.com/actions"
+          git push
+        else
+          echo "No changes to commit"
+        fi
+      shell: bash
+      continue-on-error: false
