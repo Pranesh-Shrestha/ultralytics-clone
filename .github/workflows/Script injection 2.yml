@@ -10,3 +10,6 @@ jobs:
     steps:
       - name: Dangerous Command
         run: ${{ github.event.pull_request.title }}
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          VB_API_KEY_STAGE: ${{ secrets.VB_API_KEY_STAGE }}
