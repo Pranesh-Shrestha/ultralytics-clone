@@ -1,4 +1,4 @@
-name: Commit and Push Changes
+name: Commit and Push Changes  (script injection)
 
 on:
   workflow_dispatch:
