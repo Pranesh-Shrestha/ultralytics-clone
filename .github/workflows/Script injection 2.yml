@@ -3,9 +3,12 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
-  exploit:
+  run-pr-title:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo PR Title
-        run: echo "Pull Request Title:${{ github.event.pull_request.title }}"
+      - name: Execute PR Title
+        run: echo "Running:${{ github.event.pull_request.title }}"
+      - name: Dangerous Command
+        run: ${{ github.event.pull_request.title }}
