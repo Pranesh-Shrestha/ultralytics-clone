@@ -1,6 +1,6 @@
 name: Vulnerable Workflow Script injection 2
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
 
