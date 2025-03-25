@@ -1,20 +1,13 @@
-name: Commit and Push Changes  (script injection)
-
+name: Test Injection
 on:
-    pull_request:
-     branches:
-       - main
-       
+  pull_request:
+    branches:
+      - main
 jobs:
-  commit-push:
+  exploit:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Pull the latest changes from the current branch
-      run: |
-        git pull origin ${{ github.event.pull_request.title }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Git Pull with PR Title
+        run: git pull origin ${{ github.event.pull_request.title }}
