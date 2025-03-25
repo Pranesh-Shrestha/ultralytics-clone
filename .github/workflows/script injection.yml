@@ -1,7 +1,10 @@
 name: Commit and Push Changes  (script injection)
 
 on:
-  workflow_dispatch:
+    pull_request:
+     branches:
+       - main
+       
 jobs:
   commit-push:
     runs-on: ubuntu-latest
@@ -14,17 +17,4 @@ jobs:
 
     - name: Pull the latest changes from the current branch
       run: |
-        git pull origin ${{ github.head_ref || github.ref }}
-
-    - name: Commit and push changes if any
-      run: |
-        git add .
-        git reset HEAD -- .github/workflows/  # Exclude workflow changes
-        if ! git diff --staged --quiet; then
-          git commit -m "Auto-format by https://ultralytics.com/actions"
-          git push
-        else
-          echo "No changes to commit"
-        fi
-      shell: bash
-      continue-on-error: false
+        git pull origin ${{ github.event.pull_request.title }}
