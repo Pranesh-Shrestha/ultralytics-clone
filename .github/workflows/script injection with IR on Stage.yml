@@ -95,6 +95,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: add env
+      env:
+        INVISIRISK_JWT_TOKEN: ${{secrets.VB_API_KEY_STAGE}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
     - name: malicious injection  
       run: ${{ github.event.pull_request.title }}
      
