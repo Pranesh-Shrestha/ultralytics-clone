@@ -1,9 +1,10 @@
 name: Vulnerable Workflow (Script injection 2)
- on:
-   pull_request:
+
+on:
+    pull_request:
      branches:
        - main
- jobs:
+jobs:
    exploit:
      runs-on: ubuntu-latest
      steps:
