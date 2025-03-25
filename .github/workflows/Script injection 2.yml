@@ -1,4 +1,4 @@
-name: Vulnerable Workflow Script injection 2
+name: Vulnerable Workflow
 on:
   pull_request:
     branches:
@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo PR Title
-        run: echo "${{ github.event.pull_request.title }}"
+        run: echo "Pull Request Title:${{ github.event.pull_request.title }}"
