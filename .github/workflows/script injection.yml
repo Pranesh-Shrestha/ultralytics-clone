@@ -5,6 +5,8 @@ on:
 jobs:
   commit-push:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Set the token as an env variable
 
     steps:
     - name: Checkout repository
