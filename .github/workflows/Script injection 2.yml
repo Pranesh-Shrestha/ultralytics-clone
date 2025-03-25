@@ -1,11 +1,11 @@
 name: Vulnerable Workflow (Script injection 2)
-on:
-  pull_request:
-    branches:
-      - main
-jobs:
-  exploit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Echo PR Title
-        run: "git pull origin ${{ github.head_ref || github.ref }}"
+ on:
+   pull_request:
+     branches:
+       - main
+ jobs:
+   exploit:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Echo PR Title
+         run: echo "${{ github.event.pull_request.title }}"
