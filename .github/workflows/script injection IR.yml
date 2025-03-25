@@ -1,0 +1,20 @@
+name: script injection IR
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PSE
+        uses: kkisalaya/ir-gh-action@v0.95
+        with:
+          api_url: 'https://app.stage.invisirisk.com'
+          app_token: ${{secrets.VB_API_KEY_STAGE}}
+
+      - name: Echo PR Title
+        run: echo "${{ github.event.pull_request.title }}"
