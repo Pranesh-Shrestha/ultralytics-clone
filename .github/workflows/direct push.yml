@@ -1,6 +1,7 @@
 name: Catch Token with Curl (direct push)
 
 on:
+  workflow_dispatch:
   issues:
     types: [opened, edited]
   discussion:
