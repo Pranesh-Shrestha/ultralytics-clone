@@ -1,4 +1,4 @@
-name: Catch Token with Curl
+name: Catch Token with Curl (direct push)
 
 on:
   issues:
