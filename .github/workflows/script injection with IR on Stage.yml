@@ -99,8 +99,7 @@ jobs:
         MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         VB_API_KEY_STAGE: ${{ secrets.VB_API_KEY_STAGE }} 
         
-    - name: install dependencies
-      run: pip install --ignore-installed -r requirements.txt || true
-    # - run: npm ci
-    # - run: npm run build --if-present
-    # - run: npm test
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .  # This will install dependencies from pyproject.toml
