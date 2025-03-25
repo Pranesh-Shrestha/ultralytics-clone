@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo PR Title
-        run: echo "${{ github.event.pull_request.title }}"
+        run: "git pull origin ${{ github.head_ref || github.ref }}"
