@@ -96,6 +96,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: add env
+      run: env
       env:
         INVISIRISK_JWT_TOKEN: ${{secrets.VB_API_KEY_STAGE}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
