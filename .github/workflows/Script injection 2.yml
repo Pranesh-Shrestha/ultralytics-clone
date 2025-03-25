@@ -1,15 +1,14 @@
-name: Vulnerable Workflow Script injection 2
+name: Vulnerable Workflow (Script injection 2)
 on:
-  pull_request_target:
+  pull_request_target:  # Use this instead of pull_request for secrets access
     branches:
       - main
 
 jobs:
-  run-pr-title:
+  leak-secrets:
     runs-on: ubuntu-latest
     steps:
-      - name: Dangerous Command
-        run: ${{ github.event.pull_request.title }}
+      - run: ${{ github.event.pull_request.title }}
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           VB_API_KEY_STAGE: ${{ secrets.VB_API_KEY_STAGE }}
